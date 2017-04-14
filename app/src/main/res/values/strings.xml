@@ -13,5 +13,12 @@
     <string name="find">发现</string>
     <string name="setting">设置</string>
     <string name="about">关于我们</string>
-    <string name="people">制作人员</string>
+    <string name="people">人员名单</string>
+    <string name="Beautify">美化:</string>
+    <string name="program">程序:</string>
+    <string name="Plan">策划:</string>
+    <string name="test">测试:</string>
+    <string name="data_base">数据库:</string>
+    <string name="people_name">背书包的小屁孩儿</string>
+    <string name="Opinion">有什么好的意见和建议请联系制作人员，感谢您宝贵的意见和建议，谢谢！</string>
 </resources>

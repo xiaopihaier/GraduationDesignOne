@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 /**
  * Created by baby on 2017/4/14.
@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 public class FragmentMy extends Fragment implements View.OnClickListener {
     ImageView cirImageView;//头像
-    TextView about;
+    LinearLayout about;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.my, container, false);
@@ -27,7 +27,7 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
     private void IntentView(View v) {
         cirImageView = (ImageView) v.findViewById(R.id.cirImageView);
         cirImageView.setOnClickListener(this);
-        about = (TextView) v.findViewById(R.id.about);
+        about = (LinearLayout) v.findViewById(R.id.about);
         about.setOnClickListener(this);
     }
 
