@@ -12,6 +12,9 @@
     <string name="my">我的</string>
     <string name="find">发现</string>
     <string name="setting">设置</string>
+    <string name="feedback">反馈</string>
+    <string name="Night_mode">夜间模式</string>
+    <string name="Cancellation">注销</string>
     <string name="about">关于我们</string>
     <string name="people">人员名单</string>
     <string name="Beautify">美化:</string>
