@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">毕设1</string>
+    <string name="saying">书山寻宝；学海泛舟。</string>
+    <string name="username_input">学号</string>
+    <string name="password_input">密码</string>
+    <string name="login">登录</string>
+    <string name="input_password">1234567890.A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z</string>
+    <string name="title_activity_main">Main</string>
+    <string name="determine">确定</string>
+    <string name="cancel">取消</string>
+    <string name="home">首页</string>
+    <string name="my">我的</string>
+    <string name="find">发现</string>
+    <string name="setting">设置</string>
+    <string name="about">关于我们</string>
+    <string name="people">制作人员</string>
+</resources>

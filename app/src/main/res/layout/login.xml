@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.example.baby.graduationdesignone.Login">
+
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/open_book"/>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.example.baby.graduationdesignone.ClearEditText
+                android:id="@+id/username_input"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/fillet"
+                android:gravity="center"
+                android:hint="@string/username_input"
+                android:imeOptions="actionNext"
+                android:inputType="number"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <com.example.baby.graduationdesignone.ClearEditText
+                android:id="@+id/password_input"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/fillet"
+                android:digits="@string/input_password"
+                android:gravity="center"
+                android:hint="@string/password_input"
+                android:inputType="textPassword"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/backcolor"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/saying"
+            android:textColor="@color/DarkKhaki"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+</LinearLayout>
