@@ -142,7 +142,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 }
                 return null;
             }
-        }.execute("http://www.dongri.net.cn/api/login?account=" + username_input.getText().toString().trim() + "&password=" + password_input.getText().toString().trim());
+        }.execute("http://xiaopihaier.vicp.io/api/login?account=" + username_input.getText().toString().trim() + "&password=" + password_input.getText().toString().trim());
     }
 
     private void Json() {
