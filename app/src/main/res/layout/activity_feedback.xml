@@ -18,7 +18,8 @@
         android:gravity="center"
         android:text="意见反馈"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#ffffff"/>
+        android:textColor="#ffffff"
+        android:textSize="20dp"/>
 
     <EditText
         android:id="@+id/help_feedback"
@@ -26,8 +27,10 @@
         android:layout_height="wrap_content"
         android:gravity="top"
         android:hint="请输入您的反馈意见(字数500以内)！"
-        android:lines="5"
-        android:text=""/>
+        android:lines="8"
+        android:text=""
+        android:textSize="20dp"
+        android:textStyle="bold"/>
 
     <Button
         android:layout_width="match_parent"
@@ -35,7 +38,11 @@
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="10dp"
+        android:background="@drawable/backcolor"
+        android:text="@string/Send"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"/>
 
     <ScrollView
         android:layout_width="match_parent"

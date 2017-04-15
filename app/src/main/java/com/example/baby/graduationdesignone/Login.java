@@ -77,6 +77,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             ContentValues values = new ContentValues();
             values.put("Login_button", 0);
             values.put("cirImageView", 0);
+            values.put("first_start", 0);
             db.insert("Sql", null, values);
             values.clear();
             db.close();

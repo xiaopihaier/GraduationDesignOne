@@ -14,7 +14,8 @@ public class Sql extends SQLiteOpenHelper {
             + "Login_button int ,"
             + "cirImageView int ,"
             + "username int,"
-            + "password text)";
+            + "password text,"
+            + "first_start int)";
     private Context mContext;
 
     public Sql(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -29,6 +30,10 @@ public class Sql extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        switch (oldVersion) {
+            case 1:
+            case 2:
+                db.execSQL("alter table Sql add column first_start int");
+        }
     }
 }
