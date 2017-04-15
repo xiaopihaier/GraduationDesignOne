@@ -1,7 +1,9 @@
 package com.example.baby.graduationdesignone;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -36,6 +39,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     public final static String SER_KEY = "cn.caiwb.intent.ser";
     static final int UPDATE_TEXT = 1;
     static final int UPDATE_TEXT_2 = 2;
+    private Sql dbHelper;
+
+
     private Handler handler = new Handler() {
         public void handleMessage(Message message) {
             switch (message.what) {
@@ -59,7 +65,25 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        SQLFind();
         InitView();
+    }
+
+    private void SQLFind() {
+        File file = new File("data/data/com.example.baby.graduationdesignone/databases/SQL.db");
+        if (!file.exists()) {
+            dbHelper = new Sql(Login.this, "SQL.db", null, 1);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put("Login_button", 0);
+            values.put("cirImageView", 0);
+            db.insert("Sql", null, values);
+            values.clear();
+            db.close();
+        } else {
+
+            Toast.makeText(this, "存在", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -115,6 +139,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             //                            }
                         }
                     }).start();
+                    dbHelper = new Sql(Login.this, "SQL.db", null, 1);
+                    SQLiteDatabase db = dbHelper.getWritableDatabase();
+                    ContentValues values = new ContentValues();
+                    values.put("Login_button", 1);
+                    db.update("Sql", values, "", new String[]{});
                 }
         }
     }

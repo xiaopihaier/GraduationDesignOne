@@ -11,9 +11,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Sql extends SQLiteOpenHelper {
     public static final String SQL = "create table Sql("
             + "id integer primary key autoincrement,"
-            + "first_start boolean,"
-            + "cirImageView boolean,"
-            + "username number,"
+            + "Login_button int ,"
+            + "cirImageView int ,"
+            + "username int,"
             + "password text)";
     private Context mContext;
 

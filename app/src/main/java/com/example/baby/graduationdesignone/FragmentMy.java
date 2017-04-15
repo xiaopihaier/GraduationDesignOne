@@ -40,7 +40,6 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
     public static final int CROP_PHOTO = 2;
     private Uri imageUri;
     static final int UPDATE_TEXT = 1;
-    private Sql dbHelper;
 
     private Handler handler = new Handler() {
         @RequiresApi(api = Build.VERSION_CODES.M)
@@ -62,7 +61,6 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.my, container, false);
         IntentView(view);
-        dbHelper.getWritableDatabase();
         return view;
     }
 
