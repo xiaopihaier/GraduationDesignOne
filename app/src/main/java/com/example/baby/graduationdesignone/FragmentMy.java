@@ -2,15 +2,26 @@ package com.example.baby.graduationdesignone;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
+import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
+import java.io.File;
+
+import static android.app.Activity.RESULT_OK;
 import static com.example.baby.graduationdesignone.R.id.btn_pick_photo;
 import static com.example.baby.graduationdesignone.R.id.btn_take_photo;
 
@@ -24,6 +35,27 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
     LinearLayout Cancellation;//注销
     //自定义的弹出框类
     PopupMenu menuWindow;
+    Bitmap bitmap;
+    public static final int TAKE_PHOTO = 1;
+    public static final int CROP_PHOTO = 2;
+    private Uri imageUri;
+    static final int UPDATE_TEXT = 1;
+    private Handler handler = new Handler() {
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        public void handleMessage(Message message) {
+            switch (message.what) {
+                case UPDATE_TEXT:
+                    try {
+                        cirImageView.setImageBitmap(bitmap);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.my, container, false);
@@ -68,12 +100,12 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
             menuWindow.dismiss();
             switch (v.getId()) {
                 case btn_take_photo:
+                    //启动相机
                     btn_take_photo();
-                    Toast.makeText(getActivity(), "拍照", Toast.LENGTH_SHORT).show();
                     break;
                 case btn_pick_photo:
+                    //启动相册
                     btn_pick_photo();
-                    Toast.makeText(getActivity(), "相册", Toast.LENGTH_SHORT).show();
                     break;
                 default:
                     break;
@@ -85,7 +117,54 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
     };
 
     private void btn_take_photo() {
+        //创建file对象 用于存储拍照后的图片
+        File outputImage = new File(Environment.getExternalStorageDirectory(), "cirImageView.jpg");
+        try {
+            if (outputImage.exists()) {
+                outputImage.delete();
+            }
+            outputImage.createNewFile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        imageUri = Uri.fromFile(outputImage);
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        startActivityForResult(intent, TAKE_PHOTO);
+    }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case TAKE_PHOTO:
+                if (resultCode == RESULT_OK) {
+                    Intent intent = new Intent("com.android.camera.action.CROP");
+                    intent.setDataAndType(imageUri, "image/*");
+                    intent.putExtra("scale", true);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                    startActivityForResult(intent, CROP_PHOTO);
+                }
+                break;
+            case CROP_PHOTO:
+                if (resultCode == RESULT_OK) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                bitmap = BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(imageUri));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            Message message = new Message();
+                            message.what = UPDATE_TEXT;
+                            handler.sendMessage(message);
+                        }
+                    }).start();
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     private void btn_pick_photo() {
