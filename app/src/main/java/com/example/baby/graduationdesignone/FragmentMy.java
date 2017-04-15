@@ -1,7 +1,10 @@
 package com.example.baby.graduationdesignone;
 
 import android.app.Fragment;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -40,6 +43,8 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
     public static final int CROP_PHOTO = 2;
     private Uri imageUri;
     static final int UPDATE_TEXT = 1;
+    private Sql dbHelper;
+    int cirImageView_db;
 
     private Handler handler = new Handler() {
         @RequiresApi(api = Build.VERSION_CODES.M)
@@ -61,6 +66,24 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.my, container, false);
         IntentView(view);
+        dbHelper = new Sql(getActivity(), "SQL.db", null, 1);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.query("Sql", null, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                cirImageView_db = cursor.getInt(cursor.getColumnIndex("cirImageView"));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        if (cirImageView_db == 1) {
+            File file = new File("/storage/emulated/0/cirlmageView.jpg");
+            if (file.exists()) {
+                Bitmap bm = BitmapFactory.decodeFile("/storage/emulated/0/cirlmageView.jpg");
+                //将图片显示到ImageView中
+                cirImageView.setImageBitmap(bm);
+            }
+        } else {
+        }
         return view;
     }
 
@@ -167,6 +190,11 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
                             handler.sendMessage(message);
                         }
                     }).start();
+                    dbHelper = new Sql(getActivity(), "SQL.db", null, 1);
+                    SQLiteDatabase db = dbHelper.getWritableDatabase();
+                    ContentValues values = new ContentValues();
+                    values.put("cirImageView", 1);
+                    db.update("Sql", values, "", new String[]{});
                 }
                 break;
             default:
