@@ -30,6 +30,8 @@
             android:name=".About"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".Feedback">
+        </activity>
     </application>
 
 </manifest>

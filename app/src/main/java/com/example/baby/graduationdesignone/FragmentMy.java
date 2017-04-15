@@ -36,6 +36,7 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
     ImageView cirImageView;//头像
     LinearLayout about;
     LinearLayout Cancellation;//注销
+    LinearLayout feedback;
     //自定义的弹出框类
     PopupMenu menuWindow;
     Bitmap bitmap;
@@ -94,6 +95,8 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
         Cancellation.setOnClickListener(this);
         about = (LinearLayout) v.findViewById(R.id.about);
         about.setOnClickListener(this);
+        feedback = (LinearLayout) v.findViewById(R.id.feedback);
+        feedback.setOnClickListener(this);
     }
 
     @Override
@@ -109,6 +112,10 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
             case R.id.Cancellation:
                 Intent Cancellation = new Intent(getActivity(), Login.class);
                 startActivity(Cancellation);
+                break;
+            case R.id.feedback:
+                Intent feedback = new Intent(getActivity(), Feedback.class);
+                startActivity(feedback);
                 break;
             case R.id.about:
                 Intent about = new Intent(getActivity(), About.class);
