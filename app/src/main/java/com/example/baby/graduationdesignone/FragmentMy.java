@@ -40,6 +40,8 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
     public static final int CROP_PHOTO = 2;
     private Uri imageUri;
     static final int UPDATE_TEXT = 1;
+    private Sql dbHelper;
+
     private Handler handler = new Handler() {
         @RequiresApi(api = Build.VERSION_CODES.M)
         public void handleMessage(Message message) {
@@ -60,6 +62,7 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.my, container, false);
         IntentView(view);
+        dbHelper.getWritableDatabase();
         return view;
     }
 
@@ -140,7 +143,13 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
                 if (resultCode == RESULT_OK) {
                     Intent intent = new Intent("com.android.camera.action.CROP");
                     intent.setDataAndType(imageUri, "image/*");
-                    intent.putExtra("scale", true);
+                    intent.putExtra("crop", "true");
+                    //裁剪框比例
+                    intent.putExtra("aspectX", 1);
+                    intent.putExtra("aspectY", 1);
+                    //图片输出大小
+                    intent.putExtra("outputX", 100);
+                    intent.putExtra("outputY", 100);
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                     startActivityForResult(intent, CROP_PHOTO);
                 }
