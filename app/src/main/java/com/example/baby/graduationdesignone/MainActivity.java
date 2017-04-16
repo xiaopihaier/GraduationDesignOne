@@ -1,12 +1,20 @@
 package com.example.baby.graduationdesignone;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
-import android.os.Bundle;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -22,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     FragmentTransaction ft;
     int witchFragment = 0;//0表示初始化“首页”，1表示初始化“我”
     UserActivity muser;
+    private Sql dbHelper;
+    int first_start, ModifyPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +39,47 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         IntentView();
         onRadioGroupClickListener();
+        SQLFind();
+    }
+
+    private void SQLFind() {
+        dbHelper = new Sql(MainActivity.this, "SQL.db", null, 1);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.query("Sql", null, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                first_start = cursor.getInt(cursor.getColumnIndex("first_start"));
+                ModifyPassword = cursor.getInt(cursor.getColumnIndex("ModifyPassword"));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        if (ModifyPassword == 0) {
+            LayoutInflater inflater = getLayoutInflater();
+            View layout = inflater.inflate(R.layout.dialog,
+                    (ViewGroup) findViewById(R.id.dialog));
+            AlertDialog dialog = new AlertDialog.Builder(this).setTitle("为了您的信息安全，请修改密码").setView(layout)
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dbHelper = new Sql(MainActivity.this, "SQL.db", null, 1);
+                            SQLiteDatabase db = dbHelper.getWritableDatabase();
+                            ContentValues values = new ContentValues();
+                            values.put("ModifyPassword", 1);
+                            db.update("Sql", values, "", new String[]{});
+                        }
+                    })
+                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dbHelper = new Sql(MainActivity.this, "SQL.db", null, 1);
+                            SQLiteDatabase db = dbHelper.getWritableDatabase();
+                            ContentValues values = new ContentValues();
+                            values.put("ModifyPassword", 1);
+                            db.update("Sql", values, "", new String[]{});
+                        }
+                    }).show();
+            dialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
+        } else {
+
+        }
     }
 
     private void onRadioGroupClickListener() {

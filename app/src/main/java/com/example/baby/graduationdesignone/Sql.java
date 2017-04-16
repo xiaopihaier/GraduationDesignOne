@@ -12,10 +12,11 @@ public class Sql extends SQLiteOpenHelper {
     public static final String SQL = "create table Sql("
             + "id integer primary key autoincrement,"
             + "Login_button int ,"
+            + "first_start int  ,"
             + "cirImageView int ,"
             + "username int,"
             + "password text,"
-            + "first_start int)";
+            + "ModifyPassword int)";
     private Context mContext;
 
     public Sql(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -30,10 +31,5 @@ public class Sql extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        switch (oldVersion) {
-            case 1:
-            case 2:
-                db.execSQL("alter table Sql add column first_start int");
-        }
     }
 }

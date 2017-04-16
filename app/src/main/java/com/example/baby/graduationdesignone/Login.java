@@ -3,6 +3,7 @@ package com.example.baby.graduationdesignone;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -35,12 +36,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     Button login;
     StringBuilder stringBuilder;
     String line, msg, username, token;
-    static final String LOGIN = "登陆成功";
     public final static String SER_KEY = "cn.caiwb.intent.ser";
     static final int UPDATE_TEXT = 1;
-    static final int UPDATE_TEXT_2 = 2;
     private Sql dbHelper;
-
+    int Login_button;
+    int Username_sql;
+    String Password_sql;
+    Cursor cursor;
+    int id;
 
     private Handler handler = new Handler() {
         public void handleMessage(Message message) {
@@ -49,10 +52,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     Intent main = new Intent(Login.this, MainActivity.class);
                     startActivity(main);
                     Login.this.finish();
-                    Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
-                    break;
-                case UPDATE_TEXT_2:
-                    Toast.makeText(Login.this, "错误", Toast.LENGTH_SHORT).show();
                     break;
                 default:
                     break;
@@ -78,12 +77,33 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             values.put("Login_button", 0);
             values.put("cirImageView", 0);
             values.put("first_start", 0);
+            values.put("ModifyPassword", 0);
             db.insert("Sql", null, values);
+            cursor = db.query("Sql", null, null, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                do {
+                    Login_button = cursor.getInt(cursor.getColumnIndex("first_start"));
+                } while (cursor.moveToNext());
+            }
+            if (Login_button == 1) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        Username_sql = cursor.getInt(cursor.getColumnIndex("username"));
+                        Password_sql = cursor.getString(cursor.getColumnIndex("password"));
+                    } while (cursor.moveToNext());
+                }
+                username_input.setText(Username_sql);
+                password_input.setText(Password_sql);
+                Log.i("Username_sql", Username_sql + "");
+                Log.i("Username_sql", "1");
+            } else {
+
+            }
+            cursor.close();
             values.clear();
             db.close();
         } else {
 
-            Toast.makeText(this, "存在", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -129,22 +149,22 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            //                            if (LOGIN.equals(msg)) {
                             Message message = new Message();
                             message.what = UPDATE_TEXT;
                             handler.sendMessage(message);
-                            //                            } else {
-                            //                                Message message = new Message();
-                            //                                message.what = UPDATE_TEXT_2;
-                            //                                handler.sendMessage(message);
-                            //                            }
                         }
                     }).start();
                     dbHelper = new Sql(Login.this, "SQL.db", null, 1);
                     SQLiteDatabase db = dbHelper.getWritableDatabase();
                     ContentValues values = new ContentValues();
                     values.put("Login_button", 1);
+                    values.put("first_start", 1);
                     db.update("Sql", values, "", new String[]{});
+                    values.put("username", username_input.getText().toString().trim());
+                    values.put("password", password_input.getText().toString().trim());
+                    db.insert("Sql", null, values);
+                    values.clear();
+                    db.close();
                 }
         }
     }

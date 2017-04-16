@@ -1,33 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="list_xuanxiang">
-        <item>全球购</item>
-        <item>潮流女装</item>
-        <item>品牌男装</item>
-        <item>电脑办公</item>
-        <item>手机数码</item>
-        <item>图书</item>
-        <item>酒水饮料</item>
-        <item>家用电器</item>
-        <item>食品生鲜</item>
-        <item>母婴频道</item>
-        <item>家居建材</item>
-        <item>个户化妆</item>
-        <item>运动户外</item>
-        <item>鞋靴箱包</item>
-        <item>奢侈礼品</item>
-        <item>珠宝饰品</item>
-        <item>玩具乐器</item>
-        <item>内衣配饰</item>
-        <item>汽车用品</item>
-        <item>音像制品</item>
-        <item>医药保健</item>
-        <item>钟表</item>
-        <item>计生情趣</item>
-        <item>京东金融</item>
-        <item>生活服务</item>
-        <item>旅游出行</item>
-        <item>农用物资</item>
-        
-        </array>
+        <item>Android</item>
+        <item>C语言</item>
+        <item>数据结构</item>
+        <item>java</item>
+        <item>SQL Server</item>
+        <item>java ee</item>
+        <item>英语</item>
+        <item>数学</item>
+        <item>动态网页</item>
+    </array>
 </resources>

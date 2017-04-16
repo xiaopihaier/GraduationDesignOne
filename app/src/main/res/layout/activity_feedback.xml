@@ -25,14 +25,19 @@
         android:id="@+id/help_feedback"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/feedback"
         android:gravity="top"
-        android:hint="请输入您的反馈意见(字数500以内)！"
+        android:hint="    请输入您的反馈意见(字数500以内)！"
         android:lines="8"
         android:text=""
         android:textSize="20dp"
         android:textStyle="bold"/>
 
     <Button
+        android:id="@+id/send"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="20dp"
