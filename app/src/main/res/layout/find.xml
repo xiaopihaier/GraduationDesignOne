@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/text_gray"
               android:orientation="vertical">
 
-    <Button
-        android:id="@+id/find"
+    <com.example.baby.graduationdesignone.ClearEditText
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="50dp"
+        android:background="@drawable/fillet"/>
 </LinearLayout>
