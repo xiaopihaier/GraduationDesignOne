@@ -5,8 +5,27 @@
               android:background="@color/text_gray"
               android:orientation="vertical">
 
-    <com.example.baby.graduationdesignone.ClearEditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/fillet"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.example.baby.graduationdesignone.ClearEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="3"
+            android:background="@drawable/fillet"
+            android:singleLine="true"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="9"
+            android:text="搜索"/>
+    </LinearLayout>
 </LinearLayout>
