@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">毕设1</string>
+    <string name="app_name">作业提交</string>
     <string name="saying">书山寻宝；学海泛舟。</string>
     <string name="username_input">学号</string>
     <string name="password_input">密码</string>
@@ -15,6 +15,7 @@
     <string name="feedback">反馈</string>
     <string name="Night_mode">夜间模式</string>
     <string name="Cancellation">注销</string>
+    <string name="work">作业情况</string>
     <string name="about">关于我们</string>
     <string name="people">人员名单</string>
     <string name="Beautify">美化:</string>

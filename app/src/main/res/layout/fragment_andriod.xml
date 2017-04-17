@@ -16,46 +16,68 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="创建一个android程序，要求：用户可以实现登陆并跳转到另一个界面"
+                android:text="1.创建一个android程序，要求：用户可以实现登陆并跳转到另一个界面"
                 android:textSize="30dp"/>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@drawable/feedback"/>
+
+            <Button
+                android:id="@+id/send_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@color/text_topbar"
+                android:text="作答"
+                android:textColor="@color/bg_topbar"
+                android:textSize="20dp"/>
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="创建一个android程序，要求：实现计算器功能"
+                android:text="2.创建一个android程序，要求：实现计算器功能"
                 android:textSize="30dp"/>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@drawable/feedback"/>
+            <Button
+                android:id="@+id/send_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@color/text_topbar"
+                android:text="作答"
+                android:textColor="@color/bg_topbar"
+                android:textSize="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="创建一个android程序，要求：實現聊天界面"
+                android:text="3.创建一个android程序，要求：實現聊天界面"
                 android:textSize="30dp"/>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@drawable/feedback"/>
+            <Button
+                android:id="@+id/send_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@color/text_topbar"
+                android:text="作答"
+                android:textColor="@color/bg_topbar"
+                android:textSize="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="创建一个android程序，要求：实现手电筒的开启"
+                android:text="4.创建一个android程序，要求：实现手电筒的开启"
                 android:textSize="30dp"/>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@drawable/feedback"/>
+            <Button
+                android:id="@+id/send_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@color/text_topbar"
+                android:text="作答"
+                android:textColor="@color/bg_topbar"
+                android:textSize="20dp"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

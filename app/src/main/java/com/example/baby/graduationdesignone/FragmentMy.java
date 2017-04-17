@@ -37,6 +37,7 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
     LinearLayout about;
     LinearLayout Cancellation;//注销
     LinearLayout feedback;
+    LinearLayout work;
     //自定义的弹出框类
     PopupMenu menuWindow;
     Bitmap bitmap;
@@ -97,6 +98,8 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
         about.setOnClickListener(this);
         feedback = (LinearLayout) v.findViewById(R.id.feedback);
         feedback.setOnClickListener(this);
+        work = (LinearLayout) v.findViewById(R.id.work);
+        work.setOnClickListener(this);
     }
 
     @Override
@@ -108,6 +111,10 @@ public class FragmentMy extends Fragment implements View.OnClickListener {
                 menuWindow = new PopupMenu(getActivity(), itemsOnClick);
                 //显示窗口
                 menuWindow.showAtLocation(getActivity().findViewById(R.id.my), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0); //设置layout在PopupWindow中显示的位置
+                break;
+            case R.id.work:
+                Intent work = new Intent(getActivity(), Work.class);
+                startActivity(work);
                 break;
             case R.id.Cancellation:
                 Intent Cancellation = new Intent(getActivity(), Login.class);
