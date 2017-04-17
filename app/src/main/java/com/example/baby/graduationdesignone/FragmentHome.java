@@ -3,6 +3,7 @@ package com.example.baby.graduationdesignone;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -21,7 +23,7 @@ import java.util.ArrayList;
  * Created by baby on 2017/4/14.
  */
 
-public class FragmentHome extends Fragment implements AdapterView.OnItemClickListener {
+public class FragmentHome extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
     ViewPager viewPager;
     View view_1, view_2, view_3, view_4;
@@ -35,6 +37,9 @@ public class FragmentHome extends Fragment implements AdapterView.OnItemClickLis
 
     FragmentManager fm;
     FragmentTransaction ft;
+
+    Button send_1, send_2, send_3, send_4;
+
 
     android.os.Handler myhandler = new android.os.Handler() {
         @Override
@@ -111,9 +116,17 @@ public class FragmentHome extends Fragment implements AdapterView.OnItemClickLis
         ft = fm.beginTransaction();
         ft.replace(R.id.classfy_lin, f_quanqiugou);
         ft.commit();
+        send_1 = (Button) view.findViewById(R.id.send_1);
+        send_1.setOnClickListener(this);
+        send_2 = (Button) view.findViewById(R.id.send_2);
+        send_2.setOnClickListener(this);
+        send_3 = (Button) view.findViewById(R.id.send_3);
+        send_3.setOnClickListener(this);
+        send_4 = (Button) view.findViewById(R.id.send_4);
+        send_4.setOnClickListener(this);
     }
 
-    private void IntentView(View view ) {
+    private void IntentView(View view) {
         viewPager = (ViewPager) view.findViewById(R.id.vp_tabs);
     }
 
@@ -131,6 +144,28 @@ public class FragmentHome extends Fragment implements AdapterView.OnItemClickLis
                 ft = fm.beginTransaction();
                 ft.replace(R.id.classfy_lin, f_other);
                 ft.commit();
+                break;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.send_1:
+                Intent send_1 = new Intent(getActivity(), Work_send.class);
+                startActivity(send_1);
+                break;
+            case R.id.send_2:
+                Intent send_2 = new Intent(getActivity(), Work_send.class);
+                startActivity(send_2);
+                break;
+            case R.id.send_3:
+                Intent send_3 = new Intent(getActivity(), Work_send.class);
+                startActivity(send_3);
+                break;
+            case R.id.send_4:
+                Intent send_4 = new Intent(getActivity(), Work_send.class);
+                startActivity(send_4);
                 break;
         }
     }

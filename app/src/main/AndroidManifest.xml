@@ -34,6 +34,8 @@
         </activity>
         <activity android:name=".Work">
         </activity>
+        <activity android:name=".Work_send">
+        </activity>
     </application>
 
 </manifest>
