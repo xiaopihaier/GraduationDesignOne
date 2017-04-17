@@ -113,7 +113,7 @@ public class FragmentHome extends Fragment implements AdapterView.OnItemClickLis
         ft.commit();
     }
 
-    private void IntentView(View view) {
+    private void IntentView(View view ) {
         viewPager = (ViewPager) view.findViewById(R.id.vp_tabs);
     }
 
