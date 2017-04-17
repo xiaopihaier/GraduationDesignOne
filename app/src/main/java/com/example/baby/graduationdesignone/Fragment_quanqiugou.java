@@ -14,7 +14,7 @@ public class Fragment_quanqiugou extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View view=inflater.inflate(R.layout.fragment_quanqiugou, container, false);
+		View view=inflater.inflate(R.layout.fragment_andriod, container, false);
 		return view;
 	}
 
